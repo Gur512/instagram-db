@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("instagram-application.BLL")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e2f589ecb460ea0dedea86ac43311c31c4044cf1")]
 [assembly: System.Reflection.AssemblyProductAttribute("instagram-application.BLL")]
 [assembly: System.Reflection.AssemblyTitleAttribute("instagram-application.BLL")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,0 +1,21 @@
+﻿@model List<instagram_application.Models.User>
+
+<h2>Select a User to Send a Message</h2>
+
+<form method="post" action="@Url.Action("Index", "DirectMessage")">
+    <label for="receiverId">Select User:</label>
+    <select name="receiverId" required>
+        <option value="">Select a User</option>
+        @foreach (User user in Model)
+        {
+            <option value="@user.UserId">@user.UserName</option>
+        }
+    </select>
+
+    <h2>Send a Direct Message</h2>
+
+    <label>Message:</label>
+    <textarea name="messageText" required></textarea>
+
+    <button type="submit">Send</button>
+</form>

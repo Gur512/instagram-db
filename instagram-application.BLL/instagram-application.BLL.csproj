@@ -7,4 +7,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\instagram-application.DAL\instagram-application.DAL.csproj" />
+    <ProjectReference Include="..\instgram-application.Models\instgram-application.Models.csproj" />
+  </ItemGroup>
+
 </Project>

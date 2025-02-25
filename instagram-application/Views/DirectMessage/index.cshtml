@@ -1,0 +1,22 @@
+﻿@model List<DirectMessage>
+
+<h2>Conversation</h2>
+
+@if (Model != null && Model.Count > 0)
+{
+    <div>
+        @foreach (DirectMessage message in Model)
+        {
+            <div>
+                <strong>@message.SenderUser.UserName:</strong>
+                <p>@message.TextMessage</p>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <p>No messages found in this conversation.</p>
+}
+
+<a href="/User/Profile">Go back</a>

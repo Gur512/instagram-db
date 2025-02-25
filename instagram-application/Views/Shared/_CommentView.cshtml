@@ -1,0 +1,18 @@
+﻿@model List<instagram_application.Models.Comment>
+
+@if (Model != null && Model.Any())
+{
+    @foreach (var comment in Model)
+    {
+        <div class="comment">
+            <p>@(string.IsNullOrWhiteSpace(comment.CommentText) ? "No comment text available" : comment.CommentText)</p>
+            <small>
+                Posted by @(comment.User != null && !string.IsNullOrWhiteSpace(comment.User.UserName) ? comment.User.UserName : "Unknown User")
+            </small>
+        </div>
+    }
+}
+else
+{
+    <p>No comments yet.</p>
+}

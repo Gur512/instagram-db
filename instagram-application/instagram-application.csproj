@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>instagram_application</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.13">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\instagram-application.BLL\instagram-application.BLL.csproj" />
+    <ProjectReference Include="..\instagram-application.DAL\instagram-application.DAL.csproj" />
+    <ProjectReference Include="..\instgram-application.Models\instgram-application.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\Comment\" />
+    <Folder Include="Views\Follow\" />
+    <Folder Include="Views\Image\" />
+    <Folder Include="Views\Like\" />
+    <Folder Include="Views\Storyview\" />
+  </ItemGroup>
+
+</Project>

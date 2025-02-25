@@ -1,0 +1,29 @@
+﻿ @model List<Story>
+
+<h2>All Stories</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>StoryId</th>
+            <th>UserId</th>
+            <th>Caption</th>
+            <th>ExpirationTime</th>
+            <th>UploadedAt</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Story story in Model)
+        {
+            <tr>
+                <td>@story.StoryId</td>
+                <td>@story.UserId</td>
+                <td>@story.Caption</td>
+                <td>@story.ExpirationTime</td>
+                <td>@story.UploadedAt</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

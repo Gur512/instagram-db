@@ -1,0 +1,156 @@
+﻿@model instagram_application.Models.User
+
+<h2>@Model.UserName's Profile</h2>
+
+<h3>Posts</h3>
+@if (Model.Posts != null && Model.Posts.Any())
+{
+    <ul>
+        @foreach (Post post in Model.Posts)
+        {
+            <li>
+                <p>@post.Caption</p>
+
+                @if (post.Images != null && post.Images.Any())
+                {
+                    <img src="@post.Images.First().ImageUrl" alt="Post Image" width="300" />
+                }
+                else
+                {
+                    <p>No image available.</p>
+                }
+
+                <form method="post" action="@Url.Action("Profile", new { id = Model.UserId, postIdToLike = post.PostId })">
+                    <button type="submit" class="like-btn">
+                        <i class="fas fa-thumbs-up" style="margin-top: 10px;"></i>
+                    </button>
+                </form>
+                <span class="like-count">@post.Likes.Count() likes</span>
+
+                @if (TempData["SuccessMessage"] != null)
+                {
+                    <div class="like-message" style="color: green;">
+                        @TempData["SuccessMessage"]
+                    </div>
+                }
+
+                <h4>Comments:</h4>
+                <div id="comments-@post.PostId">
+                    @* @await Html.PartialAsync("_CommentView", post.Comments) *@
+                    <partial name="_CommentView" model="post.Comments" />
+                </div>
+                <!-- Render Comments -->
+                @if (post.Comments != null && post.Comments.Any())
+                {
+                    @foreach (Comment comment in post.Comments)
+                    {
+                        <div class="comment">
+                            <p>@comment.CommentText</p>
+                             @if (comment.User != null)  {
+                                    <small>Posted by @comment.User.UserName</small>
+                                }
+                                else {
+                                    <small>Posted by Unknown User</small>  <!-- Handle the case where the user is null -->
+                                }                        
+                        </div>
+                    }
+                }
+                <!-- Comment Form -->
+                <form asp-controller="Comment" asp-action="AddComment" method="post">
+                    <input type="hidden" name="postId" value="@post.PostId" />
+                    <textarea name="commentText" placeholder="Write a comment..." required></textarea>
+                    <button type="submit">Add Comment</button>
+                </form>
+
+                <div id="commentsSection">
+
+                </div>
+                <!-- Display Success/Error Messages -->
+                @if (TempData["SuccessMessage"] != null)
+                {
+                    <div style="color: green;">
+                        @TempData["SuccessMessage"]
+                    </div>
+                }
+
+                @if (TempData["ErrorMessage"] != null)
+                {
+                    <div style="color: red;">
+                        @TempData["ErrorMessage"]
+                    </div>
+                }
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p>No posts available.</p>
+}
+
+<h3>Stories</h3>
+@if (Model.Stories != null && Model.Stories.Any())
+{
+    <ul>
+        @foreach (Story story in Model.Stories)
+        {
+            <li>
+                @if (ViewBag.IsExpired)
+                {
+                    <span>This story has expired.</span>
+                    <p>Story Caption:</p>
+                    <span>@story.Caption</span>
+                }
+                else
+                {
+                    <strong>@story.Caption</strong>
+                }
+            </li>
+            <a href="@Url.Action("Storyview", "User", new { storyId = story.StoryId })">See who viewed this story</a>
+        }
+    </ul>
+}
+else
+{
+    <p>No stories available.</p>
+}
+
+<h3>Followers</h3>
+@{
+    var followers = ViewBag.Followers as List<instagram_application.Models.User>;
+}
+
+@if (followers != null && followers.Any())
+{
+    <ul>
+        @foreach (User follower in ViewBag.Followers)
+        {
+            <li>@follower.UserName</li>
+        }
+    </ul>
+}
+else
+{
+    <p>No followers.</p>
+}
+<h3>Following</h3>
+@{
+    List<User> following = ViewBag.Following as List<User>;
+}
+@if (following != null && following.Any())
+{
+    <ul>
+        @foreach (User followings in ViewBag.Following)
+        {
+            <li>@followings.UserName</li>
+        }
+    </ul>
+}
+else
+{
+    <p>Not following anyone yet.</p>
+}
+
+<a href="/User/CreateDM">
+    <button type="button">Send a DM</button>
+</a>

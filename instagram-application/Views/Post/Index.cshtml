@@ -1,0 +1,27 @@
+﻿@model List<Post>
+
+<h2>All Posts</h2>
+
+<table class="table"> 
+    <thead>
+      <tr>
+            <th>PostId</th>
+            <th>UserId</th>
+            <th>Caption</th>
+            <th>Createdat</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Post post in Model)
+        {
+            <tr>
+                <td>@post.PostId</td>
+                <td>@post.UserId</td>
+                <td>@post.Caption</td>
+                <td>@post.Createdat</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

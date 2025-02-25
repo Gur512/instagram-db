@@ -1,0 +1,19 @@
+﻿@{
+    List<User> viewers = ViewBag.Viewers as List<User>;
+}
+
+<h3>Users who viewed this story</h3>
+
+@if (viewers != null && viewers.Any())
+{
+    <ul>
+        @foreach (User viewer in viewers)
+        {
+            <li>@viewer.UserName</li>
+        }
+    </ul>
+}
+else
+{
+    <p>No users have viewed this story yet.</p>
+}

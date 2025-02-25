@@ -1,0 +1,34 @@
+﻿ @model List<User> 
+
+ <h2>All Users</h2> 
+
+<table class="table"> 
+    <thead> 
+         <tr> 
+             <th>UserId</th> 
+             <th>User Name</th> 
+             <th>Password</th> 
+             <th>Bio</th> 
+             <th>Profile Picture</th> 
+             <th>Email</th> 
+             <th>Action</th>
+         </tr> 
+     </thead> 
+     <tbody> 
+         @foreach (User user in Model) 
+         { 
+             <tr> 
+                 <td>@user.UserId</td> 
+                <td>@user.UserName</td> 
+                 <td>@user.Password</td>                
+                 <td>@user.Bio</td> 
+                 <td><img src="@user.ProfilePicture" alt="@user.UserName" width="50" /></td> 
+                 <td>@user.Email</td>
+                <td>
+                    <a href="@Url.Action("Profile", "User", new { id = user.UserId })">View Profile</a>
+                </td>
+             </tr> 
+         } 
+     </tbody> 
+ </table> 
+
